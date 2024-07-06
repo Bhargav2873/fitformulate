@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Formulate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>FIT FORMULATE</h1>
+    </header>
+    <div class="dashboard">
+        <a href="#home-section" class="card">
+            <h2>Body Fat</h2>
+            <p>Your journey to a healthier life starts here.</p>
+            <img src="https://www.usatoday.com/gcdn/-mm-/73b6cb0638a6bff0cc38992770d5d7c0e95c5c6d/c=0-157-3100-1908/local/-/media/2016/03/17/USATODAY/USATODAY/635938315025345589-XXX-BELLY-FAT-03-77306714.JPG?width=3100&height=1751&fit=crop&format=pjpg&auto=webp" alt="Fitness Home">
+        </a>
+        <a href="#workouts-section" class="card">
+            <h2>Workouts</h2>
+            <img src="https://usercontent.one/wp/www.dabbsfitness.com/wp-content/uploads/2022/04/56-1024x683.png?media=1658520442" alt="Workout 1">
+            <p>Full Body Workout</p>
+        </a>
+        <a href="#progress-section" class="card">
+            <h2>Calories Traker</h2>
+            <p>Monitor your progress with our advanced tracking tools.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHdmwq0J91zXz_xMvpuD-MvHDHF36tJP2Qw&s" alt="Progress Tracking">
+        </a>
+        <a href="#nutrition-section" class="card">
+            <h2>Diet Plan</h2>
+            <p>Get personalized nutrition plans to complement your workouts.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIhepEaNqE1_WJ3iS8tASh5lEIillD-Inl-g&s" alt="Nutrition Plans">
+        </a>
+        <a href="#profile-section" class="card">
+            <h2>Water Tracker</h2>
+            <p>Track you water goal here.</p>
+            <img src="https://www.pentair.com/en-us/about-pentair/newsroom/blog/does-your-body-tell-you-how-much-water-to-drink/jcr:content/par/section_01/col1/inline_text_image_co/image.img.jpg/1621891127808.jpg" alt="User Profile">
+        </a>
+    </div>
+
+    <!-- Sections -->
+    <section id="home-section" class="content-section">
+        <h2>Body Fat Analyzer And Calories Calculator</h2>
+        <p>Welcome to your fitness journey!</p>
+<body>
+    <div class="container">
+        <form id="bodyFatForm">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required onchange="toggleHipInput()">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+
+            <label for="waist">Waist Circumference (cm):</label>
+            <input type="number" id="waist" name="waist" required>
+
+            <label for="neck">Neck Circumference (cm):</label>
+            <input type="number" id="neck" name="neck" required>
+
+            <label for="hip" id="hipLabel">Hip Circumference (cm):</label>
+            <input type="number" id="hip" name="hip">
+
+            <button type="button" onclick="calculateBodyMetrics()">Calculate Body Fat</button><br>
+        </form>
+
+        <div id="result"></div><br>
+      
+        <form id="goalForm" style="display: none;">
+            <label for="bodyFat">Body Fat Percentage (%):</label>
+            <input type="number" id="bodyFat" name="bodyFat" readonly required>
+            <h2>Select Your Goal</h2>
+            <div id="goalOptions">
+                <label>
+                    <input type="radio" name="goal" value="bulk" required>
+                    <img id="bulkImage" alt="Bulk">
+                   <br> <span>Bulk</span>
+                </label>
+                <label>
+                    <input type="radio" name="goal" value="leanBulk">
+                    <img id="leanBulkImage" alt="Lean Bulk">
+                    <br><span>Lean Bulk</span>
+                </label>
+                <label>
+                    <input type="radio" name="goal" value="shredded">
+                    <img id="shreddedImage" alt="Shredded">
+                   <br> <span>Shredded</span>
+                </label>
+            </div>
+            <button type="button" onclick="calculateCalories()">Calculate Calories</button>
+            <br><div id="result1"></div>
+        </form>
+    </div>
+</body>
+</html>
+
+    </section>
+  
+    <section id="workouts-section" class="content-section">
+        <h2>Workouts</h2>
+        <p>Discover various workout plans to keep you fit.</p>
+  <div class="workout-selector">
+
+    <label for="workout-type">Select a workout type:</label>
+
+    <select id="workout-type">
+
+      <option value="chest">Chest</option>
+
+      <option value="back">Back</option>
+
+      <option value="shoulder">Shoulder</option>
+
+      <option value="bicep">Bicep</option>
+
+      <option value="tricep">Tricep</option>
+
+      <option value="legs">Legs</option>
+
+      <option value="abs">Abs</option>
+
+    </select>
+
+    <button onclick="getWorkout()">Get Workout</button>
+
+  </div>
+
+  <div id="workout-display"></div>
+
+    </section>
+    <section id="progress-section" class="content-section">
+        <h2>Calories Tracker</h2>
+        <p>Track your fitness progress over time.</p>
+        <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Meal Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Meal Tracker</h1>
+        <div id="mealList">
+            <!-- Meals will be dynamically added here -->
+        </div>
+        <div id="totalCalories">
+            Total Calories: <span id="total">0</span>
+        </div>
+        <div class="addMeal">
+            <input type="text" id="mealName" placeholder="Enter meal name">
+            <input type="number" id="calories" placeholder="Enter calories">
+            <button onclick="addMeal()">Add Meal</button>
+        </div>
+    </div>
+    </section>
+    <section id="nutrition-section" class="content-section">
+        <div>
+            <h1>Choose a Meal Option</h1>
+        <div class="items-options">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRESGfyHJmKOf713JLP0QcTLvPkNHcLHUPUhw&s" alt="Breakfast" id="breakfast" class="meal-image"><p>Breakfast</p>
+            <img src="https://www.eatingwell.com/thmb/zSh86Cx-fybgBu5-baxombw1OiA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/diy-taco-lunch-box-54f8791776b64900b285fbfc22a4f0bc.jpg" alt="Lunch" id="lunch" class="meal-image"><br><p>Lunch</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx5wBfhPhYpVdEen824sHVGmx-GdOfD9ByXQ&s" alt="Dinner" id="dinner" class="meal-image"><br><p>Dinner</p>
+            <img src="https://www.tastingtable.com/img/gallery/30-healthy-snack-ideas-that-wont-ruin-your-diet/l-intro-1643925756.jpg" alt="Snacks" id="snacks" class="meal-image"><br><p>Snacks</p>
+        </div>
+        <div id="meal-list"></div>
+        <script src="main.js"></script><br>
+    </div>
+
+        <h1>Nutrition Chart</h1>
+        <form method="post">
+          <label for="calories">Calories:</label>
+          <input type="text" id="calories" name="calories">
+          <input type="submit" value="Predict">
+        </form>
+
+        {% if proteins %}
+        <h2>Predicted Nutrients</h2>
+        <p>Proteins: {{ proteins }} g</p>
+        <p>Carbohydrates: {{ carbohydrates }} g</p>
+        <p>Fats: {{ fats }} g</p>
+        
+        <h2>Nutrient Distribution</h2>
+        <canvas id="nutrientChart"></canvas>
+        <script>
+            var ctx = document.getElementById('nutrientChart').getContext('2d');
+            var data = {
+                labels: ['Proteins', 'Carbohydrates', 'Fats'],
+                datasets: [{
+                    data: [{{ proteins }}, {{ carbohydrates }}, {{ fats }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            var options = {
+                radius: '80%',
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Nutrient Distribution'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                var total = context.dataset.data.reduce(function(a, b) { return a + b; }, 0);
+                                var value = context.raw;
+                                var percentage = ((value / total) * 100).toFixed(0) + '%';
+                                label += percentage;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+            var nutrientChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+        </script>
+        {% endif %}
+        
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+    </div> 
+    </section>
+      
+    <section id="profile-section" class="content-section">
+        <h1>Water Tracker</h1>
+        <p>Manage your profile and view your achievements.</p>
+      <div class="container">
+        <div class="tracker">
+            <div class="goal-setting">
+                <label for="goal-input">Set your goal (ml):</label>
+                <input type="number" id="goal-input" placeholder="e.g. 2000">
+                <button onclick="setGoal()">Set Goal</button>
+            </div>
+            <div class="tracker-info">
+                <p>Goal: <span id="goal">0</span> ml</p>
+                <p>Consumed: <span id="consumed">0</span> ml</p>
+            </div>
+            <div class="tracker-buttons">
+              <button onclick="addWater(50)">+50 ml</button>
+              <button onclick="addWater(100)">+100 ml</button>
+                <button onclick="addWater(250)">+250 ml</button>
+                <button onclick="addWater(500)">+500 ml</button>
+            </div>
+            <div class="progress">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="congrats-message" class="hidden">
+                <p>Complete Your Goal.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <p>&copy; 2024 Fit Formulate. All rights reserved.</p>
+    </footer>
+</body>
+</html>
